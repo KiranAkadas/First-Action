@@ -6,13 +6,9 @@ const github = require('@actions/github');
 //const base = core.getInput('base_brancg', { required: true });
 async function run() {
   try {
-    console.log("Ok so is it getting printed?")
     const context = github.context;
-    console.log("Ok so is it getting printed?")
     const pullRequest=context.payload.pull_request.head.ref;
-    console.log("Ok so is it getting printed?")
     const base=context.base_ref
-    console.log("Ok so is it getting printed?")
     await exec.exec('git diff --stat ',[base,pullRequest]);
     console.log("Ok so is it getting printed?")
     console.log(base,pullRequest)
@@ -20,3 +16,5 @@ async function run() {
     core.setFailed(error.message);
   }
 }
+
+run();
