@@ -17,7 +17,7 @@ async function run() {
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
     const base=context.payload.pull_request.base.ref;
-    await exec.exec('git diff --stat ',["KiranAkadas/WebTechnologies_PasswordSecurity/master","KiranAkadas/WebTechnologies_PasswordSecurity/test4"]);
+    await exec.exec('git diff --stat ',["origin/master","origin/test4"]);
     console.log("Ok so is it getting printed?")
     //console.log(base,pullRequest)
   } catch (error) {
