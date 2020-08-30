@@ -13,6 +13,8 @@ const github = __webpack_require__(438);
 //const base = core.getInput('base_brancg', { required: true });
 async function run() {
   try {
+    const myToken = core.getInput('myToken');
+    const octokit = github.getOctokit(myToken)
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
     const base=context.payload.pull_request.base.ref;
