@@ -15,10 +15,10 @@ async function run() {
   try {
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
-    const base=context.base_ref
+    const base=context.payload.pull_request.base.ref;
     await exec.exec('git diff --stat ',[base,pullRequest]);
     console.log("Ok so is it getting printed?")
-    console.log(base,pullRequest)
+    //console.log(base,pullRequest)
   } catch (error) {
     core.setFailed(error.message);
   }
