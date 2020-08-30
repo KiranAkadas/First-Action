@@ -12,7 +12,7 @@ async function run() {
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
     const base=context.payload.pull_request.base.ref;
-    await exec.exec("git log --oneline",[base, pullRequest])
+    await exec.exec("git log --oneline",["WebTechnologies_PasswordSecurity/master", "WebTechnologies_PasswordSecurity/test4"])
     getCommitDifference(base, pullRequest);
   
   } catch (error) {
