@@ -13,18 +13,46 @@ const github = __webpack_require__(438);
 //const base = core.getInput('base_brancg', { required: true });
 async function run() {
   try {
-    const myToken = core.getInput('myToken');
-    const octokit = github.getOctokit(myToken)
+
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
     const base=context.payload.pull_request.base.ref;
-    await exec.exec('git diff --stat ',[base,pullRequest]);
-    console.log("Ok so is it getting printed?")
-    //console.log(base,pullRequest)
+    
+    getCommitDifference(base, pullRequest);
+  
   } catch (error) {
     core.setFailed(error.message);
   }
 }
+
+async function getCommitDifference(baseBranch, secondaryBranch) {
+  try {
+    let output = '';
+    let err = '';
+
+    // These are option configurations for the @actions/exec lib`
+    const options = {};
+    options.listeners = {
+      stdout: (data) => {
+        output += data.toString();
+      },
+      stderr: (data) => {
+        err += data.toString();
+      }
+    };
+    options.cwd = './';
+
+    await exec.exec(`${src}/script.sh`, [baseBranch, secondaryBranch], options);
+    const { commitDiffCount } = JSON.parse(output);
+
+    console.log('\x1b[32m%s\x1b[0m', `Difference in commits between ${secondaryBranch} and ${baseBranch}: ${commitDiffCount}`);
+  
+  } catch (err) {
+    core.setFailed(`Could not get commit difference between branches because: ${err.message}`);
+    process.exit(0);
+  }
+}
+
 run();
 
 
