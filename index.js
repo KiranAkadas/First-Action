@@ -24,6 +24,7 @@ async function run() {
     const pullRequest=context.payload.pull_request.head.ref;
     const base=context.base_ref
     await exec.exec('git diff --stat ',[base,pullRequest],options);
+    console.log("Ok so is it getting printed?")
     console.log(options)
   } catch (error) {
     core.setFailed(error.message);
