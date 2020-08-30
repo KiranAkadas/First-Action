@@ -1,21 +1,17 @@
 const core = require('@actions/core');
-const wait = require('./wait');
+const exec = require('@actions/exec');
+const github = require('@actions/github');
 
-
-// most @actions toolkit packages have async methods
+//const prb = core.getInput('PR_branch', { required: true });
+//const base = core.getInput('base_brancg', { required: true });
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
+    //const myToken = core.getInput('myToken');
+    const context = github.context;
+    const pullRequest=context.payload.pull_request.head.ref;
+    const base=context.base_ref
+    await exec.exec('git diff --stat ',[base,pullRequest]);
   } catch (error) {
     core.setFailed(error.message);
   }
 }
-
-run();

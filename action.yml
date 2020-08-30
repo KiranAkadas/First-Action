@@ -1,13 +1,9 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
-inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
-    required: true
-    default: '1000'
+name: 'Countify'
+description: 'Counts the number of words in the committed file'
+
 outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  words: # output will be available to future steps
+    description: 'The number of words in the commit'
 runs:
   using: 'node12'
   main: 'dist/index.js'
