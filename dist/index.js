@@ -9,6 +9,8 @@ const core = __webpack_require__(186);
 const exec = __webpack_require__(514);
 const github = __webpack_require__(438);
 
+const src = __dirname;
+
 //const prb = core.getInput('PR_branch', { required: true });
 //const base = core.getInput('base_brancg', { required: true });
 async function run() {
@@ -42,7 +44,7 @@ async function getCommitDifference(baseBranch, secondaryBranch) {
     };
     options.cwd = './';
 
-    await exec.exec(`${src}/script.sh`, [baseBranch, secondaryBranch], options);
+    await exec.exec(__webpack_require__.ab + "script.sh", [baseBranch, secondaryBranch], options);
     const { commitDiffCount } = JSON.parse(output);
 
     console.log('\x1b[32m%s\x1b[0m', `Difference in commits between ${secondaryBranch} and ${baseBranch}: ${commitDiffCount}`);

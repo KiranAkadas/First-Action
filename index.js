@@ -2,6 +2,8 @@ const core = require('@actions/core');
 const exec = require('@actions/exec');
 const github = require('@actions/github');
 
+const src = __dirname;
+
 //const prb = core.getInput('PR_branch', { required: true });
 //const base = core.getInput('base_brancg', { required: true });
 async function run() {
