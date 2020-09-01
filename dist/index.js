@@ -16,8 +16,8 @@ async function run() {
   
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
-    const repo=context.payload.pull_request.head.html_url;
-    const reponame=context.payload.pull_request.repo.name;
+    const repo=context.payload.pull_request.head.repo.html_url;
+    const reponame=context.payload.pull_request.head.repo.name;
     const base=context.payload.pull_request.base.ref;
     await exec.exec('git clone ',[repo])
     await exec.exec('cd ',[reponame])
