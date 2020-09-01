@@ -8,6 +8,7 @@ require('./sourcemap-register.js');module.exports =
 const core = __webpack_require__(186);
 const exec = __webpack_require__(514);
 const github = __webpack_require__(438);
+const wait = __webpack_require__(258);
 
 //const prb = core.getInput('PR_branch', { required: true });
 //const base = core.getInput('base_brancg', { required: true });
@@ -6971,6 +6972,23 @@ function wrappy (fn, cb) {
     return ret
   }
 }
+
+
+/***/ }),
+
+/***/ 258:
+/***/ ((module) => {
+
+let wait = function (milliseconds) {
+  return new Promise((resolve) => {
+    if (typeof milliseconds !== 'number') {
+      throw new Error('milliseconds not a number');
+    }
+    setTimeout(() => resolve("done!"), milliseconds)
+  });
+};
+
+module.exports = wait;
 
 
 /***/ }),
