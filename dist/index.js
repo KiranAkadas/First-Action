@@ -17,8 +17,8 @@ async function run() {
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
     const base=context.payload.pull_request.base.ref;
-    await exec.exec('ls')
-    await exec.exec('git diff --stat ',["origin/master","origin/test4"]);
+    await exec.exec('git fetch origin master:master')
+    await exec.exec('git diff --stat ',["master","test4"]);
     console.log("Ok so is it getting printed?")
     //console.log(base,pullRequest)
   } catch (error) {
