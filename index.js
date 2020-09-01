@@ -13,6 +13,7 @@ async function run() {
     const reponame=context.payload.pull_request.head.repo.name;
     const base=context.payload.pull_request.base.ref;
     await exec.exec('git clone ',[repo])
+    await wait(20000)
     await exec.exec('cd ',[reponame])
     await exec.exec('git diff --stat ',[base,pullRequest]);
     console.log("Ok so is it getting printed?")
