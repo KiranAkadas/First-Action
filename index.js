@@ -10,13 +10,13 @@ async function run() {
     console.log("Ok so is it getting printed?")
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
-    const repo=context.payload.pull_request.head.repo.html_url;
-    const reponame=context.payload.pull_request.head.repo.name;
+    // const repo=context.payload.pull_request.head.repo.html_url;
+    // const reponame=context.payload.pull_request.head.repo.name;
     const base=context.payload.pull_request.base.ref;
-    await exec.exec('git clone ',[repo])
-    await wait(20000)
-    await exec.exec('cd ',[reponame])
-    await exec.exec('git diff --stat ',[base,pullRequest]);
+    // await exec.exec('git clone ',[repo])
+    // await wait(20000)
+    // await exec.exec('cd ',[reponame])
+    await exec.exec('git log --stat ',[pullRequest]);
     console.log("Ok so is it getting printed?")
     //console.log(base,pullRequest)
   } catch (error) {
