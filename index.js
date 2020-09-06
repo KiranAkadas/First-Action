@@ -10,9 +10,9 @@ async function run() {
     console.log("Ok so is it getting printed?")
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
-    const create=context.payload.created_at;
-    const update=context.payload.updted_at;
-    const contri=context.payload.contributors_url
+    const create=context.payload.pull_request.created_at;
+    const update=context.payload.pull_request.updated_at;
+    const contri=context.payload.head.repo.contributors_url
     // const repo=context.payload.pull_request.head.repo.html_url;
     // const reponame=context.payload.pull_request.head.repo.name;
     const base=context.payload.pull_request.base.ref;
