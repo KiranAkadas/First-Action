@@ -26,7 +26,7 @@ async function run() {
     // await exec.exec('git clone ',[repo])
     // await wait(20000)
     // await exec.exec('cd ',[reponame])
-    await exec.exec('git log --stat ',[pullRequest]);
+    //await exec.exec('git log --stat ',[pullRequest]);
     console.log(create,update,contri)
     //console.log(base,pullRequest)
   } catch (error) {
