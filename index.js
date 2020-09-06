@@ -7,7 +7,7 @@ const wait = require('./wait');
 //const base = core.getInput('base_brancg', { required: true });
 async function run() {
   try {
-  
+    console.log("Ok so is it getting printed?")
     const context = github.context;
     const pullRequest=context.payload.pull_request.head.ref;
     const repo=context.payload.pull_request.head.repo.html_url;
